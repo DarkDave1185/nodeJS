@@ -15,10 +15,10 @@ function createHTML(answers) {
 
 
 <body>
-  <div class="container">
-  - [Heading](#project)
-    * [Sub-heading](#sub-heading)
-      + [Sub-sub-heading](#sub-sub-heading)
+    <div class="container">
+        - [Heading](#project)
+            * [Sub-heading](#sub-heading)
+                + [Sub-sub-heading](#sub-sub-heading)
 
     / ${answers.project}
     #${answers.project}
@@ -36,41 +36,10 @@ function createHTML(answers) {
     ##Question Submitted
     ${answers.question}
     GitHub Username: ${answers.username}[GitHub](https://github.com/${answers.username})
-  `
-
-    `based on choices
-  ![alt text](/path/to/img.jpg "Title")
+    
     <img src="https://img.shields.io/badge/<LABEL>-<${answers.lincense}>-<COLOR>" alt="badge"></img>
   </div>
-</div>
 </body>
-<style>
-    container{node 
-        
-    }
-
-    h6{
-        background-color: yellow;
-        color: black;
-    }
-    h5{
-        background-color: green;
-        color: black;
-    }
-    h4{
-        background-color: blue;
-        color: white;
-    }
-    p{
-        font-size: 32px;
-        border: solid 1px red;
-    }
-    p:hover{
-        color:black;
-        background-color: red;
-        font-size: 40px;
-    }
-    }
 </html>`
 }
 
