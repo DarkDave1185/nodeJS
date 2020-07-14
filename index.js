@@ -5,42 +5,29 @@ const writeFileAsync = util.promisify(fs.writeFile);
 
 function createHTML(answers) {
     return `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+- [Heading](#)
+    - [Contributions](#Contributions)
+        - [Question Submitted](#Question-Submited)
 
-
-<body>
-    <div class="container">
-        - [Heading](#project)
-            * [Sub-heading](#sub-heading)
-                + [Sub-sub-heading](#sub-sub-heading)
-
-    / ${answers.project}
-    #${answers.project}
+    
+    # ${answers.project}
     (Lincense)
-    ##Description
+    ## Description
     ${answers.description}
-    ##Install Instructions 
+    ## Install Instructions 
     ${answers.install}
-    ##Usage Information
+    ## Usage Information
     ${answers.usage}
-    ##Conrtributions
+    ## Contributions
     ${answers.contribute}
-    ##Test Instructions
+    ## Test Instructions
     ${answers.test}
-    ##Question Submitted
+    ## Question Submited
     ${answers.question}
     GitHub Username: ${answers.username}[GitHub](https://github.com/${answers.username})
     
     <img src="https://img.shields.io/badge/<LABEL>-<${answers.lincense}>-<COLOR>" alt="badge"></img>
-  </div>
-</body>
-</html>`
+`
 }
 
 function promptUser() {
@@ -77,7 +64,7 @@ function promptUser() {
         {
             type: "input",
             name: "question",
-            message: "What quesitons do oyu have for developer?"
+            message: "What quesitons do you have for developer?"
         },
         {
             type: "input",
@@ -92,7 +79,7 @@ promptUser()
     .then(function(answers) {
         const page = createHTML(answers);
 
-        return writeFileAsync("index.html", page);
+        return writeFileAsync("README.md", page);
     })
     .catch(function(err) {
         console.log(err);
