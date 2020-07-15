@@ -6,18 +6,27 @@ const writeFileAsync = util.promisify(fs.writeFile);
 function createHTML(answers) {
     return `
 - [Heading](#)
-    - [Contributions](#Contributions)
-        - [Question Submitted](#Question-Submited)
+    
 
     
     # ${answers.project}
-    (Lincense)
+    
     ## Description
     ${answers.description}
+    ## Table of Contents
+    - [Contributions](#Contributions)
+    - [Usage Information](#Usage-Information)
+    - [License](#License)
+    - [Test Instructions](#Test-Instructions)
+    - [Question Submitted](#Question-Submited)
     ## Install Instructions 
     ${answers.install}
     ## Usage Information
     ${answers.usage}
+    ` /*create license question*/
+    `
+    ## License Information
+    ${answer.license}
     ## Contributions
     ${answers.contribute}
     ## Test Instructions
@@ -59,7 +68,7 @@ function promptUser() {
         {
             type: "input",
             name: "test",
-            message: "what are the test instruction for the project?"
+            message: "What are the test instruction for the project?"
         },
         {
             type: "input",
@@ -71,6 +80,11 @@ function promptUser() {
             name: "username",
             message: "GitHub user name"
         },
+        {
+            type: "input",
+            name: "email",
+            message: "What is your email address?"
+        }
     ])
 }
 
