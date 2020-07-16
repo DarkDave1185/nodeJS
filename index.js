@@ -16,17 +16,15 @@ function createHTML(answers) {
     ## Table of Contents
     - [Contributions](#Contributions)
     - [Usage Information](#Usage-Information)
-    - [License](#License)
+    - [License](#License-Information)
     - [Test Instructions](#Test-Instructions)
     - [Question Submitted](#Question-Submited)
     ## Install Instructions 
     ${answers.install}
     ## Usage Information
     ${answers.usage}
-    ` /*create license question*/
-    `
     ## License Information
-    ${answer.license}
+    ${answers.license}
     ## Contributions
     ${answers.contribute}
     ## Test Instructions
@@ -34,8 +32,7 @@ function createHTML(answers) {
     ## Question Submited
     ${answers.question}
     GitHub Username: ${answers.username}[GitHub](https://github.com/${answers.username})
-    
-    <img src="https://img.shields.io/badge/<LABEL>-<${answers.lincense}>-<COLOR>" alt="badge"></img>
+    [![License](https://img.shields.io/badge/<LABEL>-<${answers.license}>-<COLOR>")]
 `
 }
 
@@ -59,6 +56,16 @@ function promptUser() {
             type: "input",
             name: "usage",
             message: "What should the user know before use?"
+        },
+        {
+            type: "list",
+            name: "license",
+            message: "Which of the major licenses are being used?",
+            choices: [
+                "Apache License v2.0",
+                "GNU General Public License v3.0",
+                "MIT License"
+            ]
         },
         {
             type: "input",
