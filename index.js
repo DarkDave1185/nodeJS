@@ -10,31 +10,37 @@ const licenses = {
 }
 
 function createHTML(answers) {
-    return `
-    # ${answers.project}
-    
-    ## Description
-    ${answers.description}
-    ## Table of Contents
-    - [Contributions](#Contributions)
-    - [Usage Information](#Usage-Information)
-    - [License](#License-Information)
-    - [Test Instructions](#Test-Instructions)
-    - [Question Submitted](#Question-Submited)
-    ## Install Instructions 
-    ${answers.install}
-    ## Usage Information
-    ${answers.usage}
-    ## License Information
-    ${answers.license}
-    ## Contributions
-    ${answers.contribute}
-    ## Test Instructions
-    ${answers.test}
-    ## Question Submited
-    ${answers.question}
-    #### GitHub Username: ${answers.username}
-    ##### [GitHub](https://github.com/${answers.username})
+    return `#(header)
+# ${answers.project}
+${answers.license}
+
+## Description
+${answers.description}
+## Table of Contents
+- [Contributions](#Contributions)
+- [Usage Information](#Usage-Information)
+- [License](#License-Information)
+- [Test Instructions](#Test-Instructions)
+- [Question Submitted](#Question-Submited)
+## Install Instructions 
+${answers.install}
+## Usage Information
+${answers.usage}
+## License Information
+${answers.license}
+>**Click on th Link for License Information:**
+- Apache License v2.0 - https://www.apache.org/licenses/LICENSE-2.0
+- GNU General Public License v3.0 - http://www.gnu.org/licenses/#GPL
+- MIT License - https://mit-license.org/
+## Contributions
+${answers.contribute}
+## Test Instructions
+${answers.test}
+## Question Submited
+#### By: ${answers.email}
+${answers.question}
+#### GitHub Username: ${answers.username}
+##### [GitHub Link](https://github.com/${answers.username})
 `
 }
 
