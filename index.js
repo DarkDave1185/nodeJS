@@ -2,13 +2,15 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const util = require("util");
 const writeFileAsync = util.promisify(fs.writeFile);
+/*added array to hardcode choices*/
+const licenses = {
+    "Apache License v2.0": "[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)",
+    "GNU General Public License v3.0": "[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)",
+    "MIT License": "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
+}
 
 function createHTML(answers) {
     return `
-- [Heading](#)
-    
-
-    
     # ${answers.project}
     
     ## Description
@@ -31,8 +33,8 @@ function createHTML(answers) {
     ${answers.test}
     ## Question Submited
     ${answers.question}
-    GitHub Username: ${answers.username}[GitHub](https://github.com/${answers.username})
-    [![License](https://img.shields.io/badge/<LABEL>-<${answers.license}>-<COLOR>")]
+    #### GitHub Username: ${answers.username}
+    ##### [GitHub](https://github.com/${answers.username})
 `
 }
 
@@ -69,7 +71,7 @@ function promptUser() {
         },
         {
             type: "input",
-            name: "contirbute",
+            name: "contribute",
             message: "How can someone contriute to the project?"
         },
         {
@@ -98,8 +100,12 @@ function promptUser() {
 
 promptUser()
     .then(function(answers) {
+        /*added variable to swap answer to array answer in licenses*/
+        answers.license = licenses[answers.license]
+            /*make sure createHTML is below and changes that need to be made*/
         const page = createHTML(answers);
-
+        /*check answers to questions*/
+        console.log(answers)
         return writeFileAsync("README.md", page);
     })
     .catch(function(err) {
