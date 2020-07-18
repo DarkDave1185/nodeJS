@@ -8,6 +8,11 @@ const licenses = {
     "GNU General Public License v3.0": "[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)",
     "MIT License": "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
 }
+const licenseInfo = {
+    "Apache License v2.0": "https://www.apache.org/licenses/LICENSE-2.0",
+    "GNU General Public License v3.0": "http://www.gnu.org/licenses/#GPL",
+    "MIT License": "https://mit-license.org/"
+}
 
 function createHTML(answers) {
     return `#(header)
@@ -29,9 +34,7 @@ ${answers.usage}
 ## License Information
 ${answers.license}
 >**Click on th Link for License Information:**
-- Apache License v2.0 - https://www.apache.org/licenses/LICENSE-2.0
-- GNU General Public License v3.0 - http://www.gnu.org/licenses/#GPL
-- MIT License - https://mit-license.org/
+${answers.info}
 ## Contributions
 ${answers.contribute}
 ## Test Instructions
@@ -76,6 +79,16 @@ function promptUser() {
             ]
         },
         {
+            type: "list",
+            name: "info",
+            message: "Which license information would you like?",
+            choices: [
+                "Apache License v2.0",
+                "GNU General Public License v3.0",
+                "MIT License"
+            ]
+        },
+        {
             type: "input",
             name: "contribute",
             message: "How can someone contriute to the project?"
@@ -88,12 +101,12 @@ function promptUser() {
         {
             type: "input",
             name: "question",
-            message: "What quesitons do you have for developer?"
+            message: "What quesiton(s) do you have for developer?"
         },
         {
             type: "input",
             name: "username",
-            message: "GitHub user name"
+            message: "What is your GitHub user name:"
         },
         {
             type: "input",
@@ -108,11 +121,12 @@ promptUser()
     .then(function(answers) {
         /*added variable to swap answer to array answer in licenses*/
         answers.license = licenses[answers.license]
+        answers.info = licenseInfo[answers.info]
             /*make sure createHTML is below and changes that need to be made*/
         const page = createHTML(answers);
         /*check answers to questions*/
         console.log(answers)
-        return writeFileAsync("README.md", page);
+        return writeFileAsync("nodeREADME.md", page);
     })
     .catch(function(err) {
         console.log(err);
